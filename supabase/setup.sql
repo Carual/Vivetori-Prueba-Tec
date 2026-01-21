@@ -1,0 +1,20 @@
+# tabla
+create table if not exists public.tickets (
+    id uuid primary key default gen_random_uuid (),
+    created_at timestamptz not null default now(),
+    description text not null,
+    category text,
+    sentiment text,
+    processed boolean not null default false
+);
+
+# indices
+create index if not exists idx_tickets_created_at on public.tickets (created_at desc);
+
+create index if not exists idx_tickets_processed on public.tickets (processed);
+
+# rls
+alter table public.tickets enable row level security;
+drop policy if exists "tickets_select_anon" on public.tickets;
+
+

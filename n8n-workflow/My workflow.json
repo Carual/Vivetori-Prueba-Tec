@@ -71,7 +71,7 @@
     {
       "parameters": {
         "httpMethod": "POST",
-        "path": "webhook",
+        "path": "webhook-process-ticket",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -126,7 +126,7 @@
     "executionOrder": "v1",
     "availableInMCP": false
   },
-  "versionId": "f106de6b-3f19-4310-904e-e06aef811c28",
+  "versionId": "9e53b10a-b459-49f4-bfef-312ec16501eb",
   "meta": {
     "instanceId": "6f38d01ff945f06cc44d0afc2e6096bac554347ad87c72827399e90bbd572b6b"
   },

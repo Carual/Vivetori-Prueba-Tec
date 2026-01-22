@@ -17,6 +17,10 @@ supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app = FastAPI(title="Tickets API", version="1.0.0")
 
+@app.get("/")
+async def root():
+    return {"status": "ok", "message": "API de gestión de tickets funcionando."}
+
 @app.post("/ticket")
 async def create_ticket(request: Request):
     try:

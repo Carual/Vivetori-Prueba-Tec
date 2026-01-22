@@ -9,7 +9,6 @@ base_llm = HuggingFaceEndpoint(
     repo_id="mistralai/Mistral-7B-Instruct-v0.2",
     huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
     provider="auto",
-    # No pongas task aquí si vas a chat; deja que ChatHuggingFace lo maneje
     temperature=0.0,
     max_new_tokens=120,
 )
@@ -51,5 +50,3 @@ Formato obligatorio del output (ejemplo):
     if "category" not in res or "sentiment" not in res:
         raise ValueError("Respuesta del LLM no contiene las claves requeridas.")
     return res
-
-print(get_sentiment("Me cobraron la factura dos veces este mes, necesito un reembolso inmediato, que pesimo servicio"))

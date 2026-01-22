@@ -17,11 +17,11 @@ create index if not exists idx_tickets_processed on public.tickets (processed);
 alter table public.tickets enable row level security;
 drop policy if exists "tickets_select_anon" on public.tickets;
 
-
+drop trigger if exists "my_webhook" on "public"."tickets";
 create trigger "my_webhook" after insert
 on "public"."tickets" for each row
 execute function "supabase_functions"."http_request"(
-  'https://ntfy.sh/Carual',
+  'https://n8n.carual.com/webhook/webhook-process-ticket',
   'POST',
   '{"Content-Type":"application/json"}',
   '{}',

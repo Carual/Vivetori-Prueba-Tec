@@ -29,7 +29,7 @@
             {
               "id": "00cc1c2e-bf4a-4001-99c0-e4accdf256ca",
               "leftValue": "={{ $json.sentiment }}",
-              "rightValue": "Negative",
+              "rightValue": "Negativo",
               "operator": {
                 "type": "string",
                 "operation": "equals"
@@ -48,7 +48,7 @@
       ],
       "id": "96fd03d5-63aa-4037-9df3-9e6cd8646c51",
       "name": "If",
-      "alwaysOutputData": true
+      "alwaysOutputData": false
     },
     {
       "parameters": {
@@ -62,8 +62,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        0,
-        0
+        160,
+        -16
       ],
       "id": "bd12e3d7-1abd-4c4a-aef5-e2cd669371f3",
       "name": "HTTP Request1"
@@ -126,7 +126,7 @@
     "executionOrder": "v1",
     "availableInMCP": false
   },
-  "versionId": "fa957267-a254-4ed2-bfc7-80ce769c5188",
+  "versionId": "f106de6b-3f19-4310-904e-e06aef811c28",
   "meta": {
     "instanceId": "6f38d01ff945f06cc44d0afc2e6096bac554347ad87c72827399e90bbd572b6b"
   },

@@ -18,3 +18,12 @@ alter table public.tickets enable row level security;
 drop policy if exists "tickets_select_anon" on public.tickets;
 
 
+create trigger "my_webhook" after insert
+on "public"."tickets" for each row
+execute function "supabase_functions"."http_request"(
+  'https://ntfy.sh/Carual',
+  'POST',
+  '{"Content-Type":"application/json"}',
+  '{}',
+  '1000'
+);

@@ -23,7 +23,7 @@ Este repositorio contiene una solución full-stack para un flujo de **tickets de
 3. El **backend** inserta el ticket en **Supabase**.
 4. **Supabase** Envía una alerta al webhook en **n8n**
 5. **n8n** recibe el ticket y envía una solicitud de procesar el ticket en el **backend**
-6. El **backend** con envía la consulta a huggingFace para que una IA proporcione la categoría y el sentiment de el ticket
+6. El **backend** envía la consulta a huggingFace para que una IA proporcione la categoría y el sentiment de el ticket
 7. el **backend** recibe la respuesta y actualiza los datos del ticket, hace que processed=true y lo actualiza en  y devuelve el ticket
 8. Cuando **n8n** recibe la respuesta revisa si es Negativo y si es negativo lo envía a **ntfy**
 9. Al insertarse en la BD:
@@ -32,8 +32,6 @@ Este repositorio contiene una solución full-stack para un flujo de **tickets de
 ---
 
 ## Estructura del proyecto
-
-> (Ajusta los nombres si tu repo tiene carpetas distintas.)
 
 - `frontend/`  
   Vite + React + Tailwind + Supabase client.  
@@ -65,7 +63,7 @@ Campos típicos (referenciales):
 Para pruebas, se configuró una respuesta de enviar el mensaje a en vez del correo para facilidad de visualización:
 - `https://ntfy.sh/Carual`
 ### Nota importante
-No se implementó el envío del correo. Se usa **ntfy** para poder visualizar facilmente
+No se implementó el envío del correo. Se prefirió usa **ntfy** para poder visualizar facilmente publicamente, el correo habría tenido limitaciones que en un ambiente de producción no se tendrían
 ## Backend (FastAPI)
 ### Endpoints implentados
 `GET /ticket` Devuelve todos los tickets max 200
@@ -106,13 +104,7 @@ No se implementó el envío del correo. Se usa **ntfy** para poder visualizar fa
   "sentiment": null
 }
 ```
-`POST /process-ticket`Procesa el ticket
-#### Body
-```json
-{
-  "id": uuid
-}
-```
+`POST /process-ticket/{ticket_id}`Procesa el ticket
 #### Response
 ```json
 {
@@ -124,6 +116,8 @@ No se implementó el envío del correo. Se usa **ntfy** para poder visualizar fa
   "sentiment": "..."
 }
 ```
+#### Nota
+- En un porcentaje muy casos el api de de AI puede dar sentiments no correctos, esto esta limitado por ser un api y un AI de bajo nivel de 7B
 ## Frontend (Vite + React + Tailwind)
 ## Funcionalidades
 - Lista de tickets (lectura directa desde Supabase)

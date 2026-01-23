@@ -3,6 +3,8 @@ from fastapi import FastAPI, HTTPException, Request, Response
 from dotenv import load_dotenv
 from supabase import create_client
 from llm import get_sentiment
+from fastapi.middleware.cors import CORSMiddleware
+
 
 
 load_dotenv()
@@ -16,6 +18,17 @@ if not SUPABASE_URL or not SUPABASE_KEY:
 supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 app = FastAPI(title="Tickets API", version="1.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        os.environ.get("FRONT_END_URL","") ,
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():

@@ -15,7 +15,14 @@ create index if not exists idx_tickets_processed on public.tickets (processed);
 
 # rls
 alter table public.tickets enable row level security;
-drop policy if exists "tickets_select_anon" on public.tickets;
+
+drop policy if exists tickets_select_anon on public.tickets;
+
+create policy tickets_select_anon on public.tickets for
+select to anon using (true);
+
+alter publication supabase_realtime add table public.tickets;
+
 
 drop trigger if exists "my_webhook" on "public"."tickets";
 create trigger "my_webhook" after insert

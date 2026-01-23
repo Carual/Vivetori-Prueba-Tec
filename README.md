@@ -10,7 +10,7 @@ Este repositorio contiene una solución full-stack para un flujo de **tickets de
 
 ## Links actuales
 
-- **Frontend (Vercel)**: https://vivetori-prueba-frontend.vercel.app
+- **APP ENDPOINT/Frontend (Vercel)**: https://vivetori-prueba-frontend.vercel.app
 - **ntfy (topic de pruebas)**: https://ntfy.sh/carual-vivetori
 - **Backend (FastAPI)**: https://vivetori-prueba-tec.vercel.app
 - **Servidor n8n** se usa un servidor propio de n8n, se puede cambiar todo esto en los .env
